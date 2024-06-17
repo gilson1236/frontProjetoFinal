@@ -34,6 +34,7 @@ export class ApostadorComponent implements OnInit{
 
   @ViewChild(MatPaginator) paginator!: MatPaginator
 
+
   ngAfterViewInit(){
     this.apostadores$?.subscribe(data => 
       console.log(data.totaElements)
@@ -77,7 +78,21 @@ export class ApostadorComponent implements OnInit{
   }
 
   onEdit(apostador: Apostador){
-    this.router.navigate(['edit', apostador._id], { relativeTo: this.route})
+    console.log("Navigating to edit with ID:", apostador._id); // Add this log
+    if(apostador._id){
+      this.router.navigate(['edit', apostador._id], { relativeTo: this.route})
+    } else {
+      console.error("Id é undefined")
+    }
+  }
+
+  onView(apostador: Apostador){
+    console.log("Navigating to view with ID:", apostador._id); // Add this log
+    if(apostador._id){
+      this.router.navigate(['view', apostador._id], { relativeTo: this.route})
+    } else {
+      console.error("Id é undefined")
+    }
   }
 
 }

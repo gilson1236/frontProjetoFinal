@@ -9,7 +9,10 @@
       <div class="column-flex mat-elevation-z8">
         <ng-container *ngIf="apostadores$ | async as apostadores; else loading">
           <app-apostador-list
-            [apostadores]="apostadores.apostadores">
+            [apostadores]="apostadores.apostadores"
+            (add)="onAdd()"
+            (view)="onView($event)">
+            (edit)="onEdit($event)"
           </app-apostador-list>
           <mat-paginator
             [pageSizeOptions]="[5, 10, 15]"

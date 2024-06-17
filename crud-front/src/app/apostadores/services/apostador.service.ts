@@ -24,6 +24,11 @@ export class ApostadorService {
   }
 
   save(record: Partial<Apostador>) {
+    console.log(record._id)
+    if(record._id){
+      console.log("aqui1")
+      return this.update(record)
+    }
     return this.create(record);
   }
 
@@ -31,7 +36,18 @@ export class ApostadorService {
     return this.httpClient.post<Apostador>(this.API, record).pipe(first());
   }
 
+  private update(record: Partial<Apostador>){
+    console.log("aqui2")
+    return this.httpClient.put<Apostador>(`${this.API}/${record._id}`, record).pipe(first())
+  }
+
   loadById(id: string) {
+    console.log("Fetching apostador with ID:", id); // Add this log
     return this.httpClient.get<Apostador>(`${this.API}/${id}`).pipe(first())
   }
+
+  remove(id: string){
+    return this.httpClient.delete(`${this.API}/${id}`).pipe(first())
+  }
+
 }

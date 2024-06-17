@@ -14,6 +14,7 @@ export class ApostadorResolver {
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<Apostador> {
     if (route.params && route.params['id']) {
       console.log('entrou aqui')
+      console.log(this.service.loadById(route.params['id']))
       return this.service.loadById(route.params['id']);
     }
     console.log('entrou aqui')

@@ -1,0 +1,21 @@
+<mat-card>
+    <mat-toolbar class="mat-elevation-z8">Apostador Detalhado</mat-toolbar>    
+
+    <div *ngIf="apostador">
+      <mat-card-content>
+        Nome: {{apostador.nome}}
+      </mat-card-content>
+      <mat-card-content>
+        Endereço: {{apostador.endereco}}
+      </mat-card-content>
+      <mat-card-content>
+        Telefone: {{numero}}
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-flat-button color="primary" (click)="onEdit(apostador)">Atualizar</button>
+        <button mat-flat-button color="warn" (click)="onRemove(apostador)">Remover</button>
+        <button mat-flat-button (click)="onCancel()">Voltar</button>
+      </mat-card-actions>
+    </div>
+
+</mat-card>
