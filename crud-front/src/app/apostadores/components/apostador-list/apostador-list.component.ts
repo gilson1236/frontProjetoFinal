@@ -27,6 +27,7 @@ export class ApostadorListComponent implements OnInit{
   @Output() edit: EventEmitter<Apostador> = new EventEmitter(false)
   @Output() view: EventEmitter<Apostador> = new EventEmitter(false)
   @Output() remove: EventEmitter<Apostador> = new EventEmitter(false)
+  @Output() draw = new EventEmitter(false)
 
   constructor(private route: ActivatedRoute,
               private apostadorService: ApostadorService,
@@ -58,6 +59,10 @@ export class ApostadorListComponent implements OnInit{
 
   onRemove(apostador: Apostador) {
     this.remove.emit(apostador)
+  }
+
+  onDraw(){
+    this.draw.emit(true)   
   }
 
 }

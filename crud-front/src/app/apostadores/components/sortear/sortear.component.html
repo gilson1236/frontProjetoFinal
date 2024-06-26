@@ -1,0 +1,23 @@
+<mat-card class="sortear-card" appearance="outlined">
+    <mat-card-header>
+      <mat-card-title>Vencedor(a)</mat-card-title>
+    </mat-card-header>
+    <mat-card-actions>
+      <button mat-flat-button color="primary" (click)="sortear()">Sortear</button>
+    </mat-card-actions>
+    <br>
+    <br>
+    <div class="sortear-card-content">
+      @if (registroSorteado) {
+        <div class="content"><img src="assets/images/fogosArtificio.gif"><br></div><br><br><br>
+        <mat-card-content class="content">
+          {{ registroSorteado }}
+        </mat-card-content>
+      } @else {
+        <div class="content">
+          <mat-spinner></mat-spinner>
+        </div>
+      }
+    </div>
+  </mat-card>
+  

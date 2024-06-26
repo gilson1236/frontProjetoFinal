@@ -95,4 +95,9 @@ export class ApostadorComponent implements OnInit{
     }
   }
 
+  onDraw(){
+    console.log("sortear")
+    this.router.navigate(['draw'], { relativeTo: this.route})
+  }
+
 }

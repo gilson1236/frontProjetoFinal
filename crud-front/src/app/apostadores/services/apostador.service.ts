@@ -50,4 +50,8 @@ export class ApostadorService {
     return this.httpClient.delete(`${this.API}/${id}`).pipe(first())
   }
 
+  draw(){
+    return this.httpClient.get<Apostador>(`${this.API}/sortear`).pipe(first())
+  }
+
 }

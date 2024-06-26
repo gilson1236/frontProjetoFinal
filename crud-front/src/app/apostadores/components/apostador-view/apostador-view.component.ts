@@ -11,6 +11,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog } from '@angular/material/dialog';
 import { PreviousRouteService } from '../../services/previous-route.service';
 import { Telefone } from '../../share/models/telefone';
+import { ConfirmationDialogComponent } from '../../share/components/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-apostador-view',
@@ -121,16 +122,26 @@ export class ApostadorViewComponent implements OnInit{
     let id = this.getId()
     console.log(id)
     //this.remove.emit(record)
-    this.apostadorService.remove(id).subscribe({
-      next: () => {
-        this.snackBar.open('Apostador removido com sucesso', 'X', {
-          duration: 5000,
-          verticalPosition: 'top',
-          horizontalPosition: 'center'
-        });
-      },
-      error: () => this.onError('Erro ao tentar remover o apostador!')  
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
+      data: 'Tem certeza de que deseja remover este apostador?'
     });
+
+    dialogRef.afterClosed().subscribe((result: boolean) => {
+      if(result){
+        this.apostadorService.remove(id).subscribe({
+          next: () => {
+            this.router.navigate(['/'])
+            this.snackBar.open('Apostador removido com sucesso', 'X', {
+              duration: 5000,
+              verticalPosition: 'top',
+              horizontalPosition: 'center'
+            });
+          },
+          error: () => this.onError('Erro ao tentar remover o apostador!')
+        });
+      }
+    });
+
   }
 
   private getId(){
